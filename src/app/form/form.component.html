@@ -1,0 +1,120 @@
+<h1 id="header">Employee ID Card Form</h1>
+<form  class="container" [formGroup]="idform">
+    <div id="iddiv">
+        <label for="firstname" id="lfname">First Name</label>
+        <input type="text" class="form-control" 
+        formControlName="firstname"
+        name="firstname" id="firstname">
+        <i class="glyphicon glyphicon-remove form-control-feedback wrong" id="firstError"></i>
+        <i class="glyphicon glyphicon-ok form-control-feedback tick" id="firstError"></i>           
+    </div>
+    
+    <div *ngIf="firstname.touched && firstname.invalid" id="firstNameError" 
+      class="spanHide alert alert-danger">
+      first should not be null
+    </div>
+    <!-- <br><br> -->
+    <div id="iddiv">
+        <label for="fullname">Full Name</label>
+        <input type="text" class="form-control"  name="fullname" 
+        formControlName="fullname"
+        id="fullname">
+        <i class="glyphicon glyphicon-remove form-control-feedback fullwrong" ></i>
+        <i class="glyphicon glyphicon-ok form-control-feedback fulltick "></i> 
+    </div>
+    <div id="fullNameError"
+    *ngIf="fullname.touched && fullname.invalid"
+    class="spanHide alert alert-danger">fullname should not be null</div>
+    <!-- <br><br> -->
+    <div>
+    <label for="desination">Designation</label>
+        <select name="designation" class="form-control" id="designation"
+         formControlName="designation">
+            <option value=""></option>
+            <option value="Associate Engineer">Associate Engineer</option>
+            <option value="General Manger">General Manger</option>
+            <option value="HR manager">HR manager</option>
+            <option value="Team Leader">Team Leader</option>
+        </select>
+    </div>
+    <div id="designationerror" class="spanHide alert alert-danger"
+    *ngIf="designation.touched && designation.invalid">
+      select corresponding designation
+    </div>
+    <!-- <br><br><br> -->
+    <div id="iddiv">
+        <label for="empcode">Employee Code</label>
+        <input type="text" class="form-control" id="empcode" formControlName="empid">
+        <i class="glyphicon glyphicon-remove form-control-feedback empwrong" ></i>
+        <i class="glyphicon glyphicon-ok form-control-feedback emptick "></i> 
+    </div>
+    <div id="empcodeerror" *ngIf="empid.touched && empid.invalid" class="spanHide">
+        <div *ngIf="empid.errors.required"class="alert alert-danger">
+          empcode is required
+        </div>
+        <div class="alert alert-danger" *ngIf="empid.errors.pattern">
+          empcode should start with 8 or 6 and contains 7 numbers
+        </div>
+    </div> 
+    <label for="bloodgroup">Blood Group</label>
+    <select name="bloodgroup" class="form-control" formControlName="bloodgroup" id="bloodgroup">
+        <option value=""></option>
+        <option value="A1+ve">A1+ve</option>
+        <option value="B+ve">B+ve</option>
+        <option value="B-ve">B-ve</option>
+        <option value="universal">universal</option>
+    </select>
+    <div id="bloodgrouperror" class="spanHide alert alert-danger" 
+    *ngIf="blood.touched && blood.invalid">
+      select your blood group
+    </div>
+    <!-- <br><br><br> -->
+    <label for="joiningdate">Joining Date</label>
+    <input type="date" class="form-control" id="joiningdate">
+    <span id="dateError" class="spanHide"></span>
+    <br><br>
+    <div id="iddiv">
+        <label for="email">email(virtusa)</label>
+        <input type="text" class="form-control" id="email" formControlName="email"> 
+        <i class="glyphicon glyphicon-remove form-control-feedback emailwrong" ></i>
+        <i class="glyphicon glyphicon-ok form-control-feedback emailtick "></i> 
+    </div>
+    <div id="emailerror" *ngIf="email.touched && email.invalid"  class="spanHide">
+      <div class="alert alert-danger" *ngIf="email.errors.required">
+        email id should not be null
+      </div>
+      <div class="alert alert-danger" *ngIf="email.errors.pattern">
+          email id should be a virtusa id
+        </div>
+    </div>
+    <!-- <br><br><br> -->
+    
+    <div [formGroup]="idform.get('contact')">
+      <div id="iddiv">
+          <label for="mobnum">Mobile Number</label>
+          <input type="text" class="form-control" name="mobnum"formControlName="mobnum" id="mobnum">
+          <i class="glyphicon glyphicon-remove form-control-feedback mobwrong" ></i>
+          <i class="glyphicon glyphicon-ok form-control-feedback mobtick "></i> 
+      </div>
+      <div id="mobnumerror" class="spanHide" 
+      *ngIf="contact.get('mobnum').touched && contact.get('emernum').touched && contact.invalid">
+        <!-- <div class="alert alert-danger" *ngIf="contact.errors.atleastOneMobNum">must fill atleast one number</div> -->
+        <div class="alert alert-danger" *ngIf="contact.get('mobnum').errors.atleastOneMobNum">mob is not empty</div>
+        <div class="alert alert-danger" *ngIf="contact.get('mobnum').errors.pattern">its not a valid number</div>
+      </div>
+      <!-- <br><br><br> -->
+      <div id="iddiv">
+          <label for="emernum">Emergency Number</label>
+          <input type="text" class="form-control" name="emernum" formControlName="emernum" id="emernum">
+          <i class="glyphicon glyphicon-remove form-control-feedback emerwrong" ></i>
+          <i class="glyphicon glyphicon-ok form-control-feedback emertick "></i> 
+      </div>
+      <div id="emernumerror" class="spanHide"
+       *ngIf="contact.get('mobnum').touched && contact.get('emernum').touched  && contact.invalid">
+          <div class="alert alert-danger" *ngIf="contact.get('emernum').errors.atleastOneMobNum">must fill atleast one number</div>
+          <div class="alert alert-danger" *ngIf="contact.get('emernum').errors.pattern">its not a valid number</div>
+        </div>
+      <br><br>
+    </div>
+    <button type="button" class="btn btn-success" id="submitting" [disabled]="idform.invalid" onClick="formSubmit()">submit</button>       
+</form>
