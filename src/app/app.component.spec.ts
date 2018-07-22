@@ -4,6 +4,7 @@ import { FormComponent } from './form/form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import{HttpModule}from '@angular/http';
 
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -13,7 +14,10 @@ describe('AppComponent', () => {
             ],
       declarations: [
         AppComponent,
-        FormComponent
+        FormComponent,
+
+        
+
       ],
     }).compileComponents();
   }));
@@ -31,7 +35,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-   // expect(compiled.querySelector('h1').textContent).toContain('Welcome to project!');
+
     expect(compiled.querySelector('h1').textContent).toContain('Employee ID Card Form');
   }));
 });

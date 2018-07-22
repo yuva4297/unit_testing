@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';                 //api
-import {ButtonModule} from 'primeng/button';
+//import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,7 +9,5 @@ import {ButtonModule} from 'primeng/button';
 export class AppComponent {
   title = 'app';
   
-  handleClick() {
-    console.log("click is handled");
-}  
+ 
 }

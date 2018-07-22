@@ -1,5 +1,5 @@
 <h1 id="header">Employee ID Card Form</h1>
-<form  class="container" [formGroup]="idform">
+<form  class="container" [formGroup]="idform" (ngSubmit)="onSubmit()" novalidate >
     <div id="iddiv">
         <label for="firstname" id="lfname">First Name</label>
         <input type="text" class="form-control" 
@@ -41,38 +41,7 @@
     *ngIf="designation.touched && designation.invalid">
       select corresponding designation
     </div>
-    <!-- <br><br><br> -->
-    <div id="iddiv">
-        <label for="empcode">Employee Code</label>
-        <input type="text" class="form-control" id="empcode" formControlName="empid">
-        <i class="glyphicon glyphicon-remove form-control-feedback empwrong" ></i>
-        <i class="glyphicon glyphicon-ok form-control-feedback emptick "></i> 
-    </div>
-    <div id="empcodeerror" *ngIf="empid.touched && empid.invalid" class="spanHide">
-        <div *ngIf="empid.errors.required"class="alert alert-danger">
-          empcode is required
-        </div>
-        <div class="alert alert-danger" *ngIf="empid.errors.pattern">
-          empcode should start with 8 or 6 and contains 7 numbers
-        </div>
-    </div> 
-    <label for="bloodgroup">Blood Group</label>
-    <select name="bloodgroup" class="form-control" formControlName="bloodgroup" id="bloodgroup">
-        <option value=""></option>
-        <option value="A1+ve">A1+ve</option>
-        <option value="B+ve">B+ve</option>
-        <option value="B-ve">B-ve</option>
-        <option value="universal">universal</option>
-    </select>
-    <div id="bloodgrouperror" class="spanHide alert alert-danger" 
-    *ngIf="blood.touched && blood.invalid">
-      select your blood group
-    </div>
-    <!-- <br><br><br> -->
-    <label for="joiningdate">Joining Date</label>
-    <input type="date" class="form-control" id="joiningdate">
-    <span id="dateError" class="spanHide"></span>
-    <br><br>
+    
     <div id="iddiv">
         <label for="email">email(virtusa)</label>
         <input type="text" class="form-control" id="email" formControlName="email"> 
@@ -87,34 +56,11 @@
           email id should be a virtusa id
         </div>
     </div>
-    <!-- <br><br><br> -->
-    
-    <div [formGroup]="idform.get('contact')">
-      <div id="iddiv">
-          <label for="mobnum">Mobile Number</label>
-          <input type="text" class="form-control" name="mobnum"formControlName="mobnum" id="mobnum">
-          <i class="glyphicon glyphicon-remove form-control-feedback mobwrong" ></i>
-          <i class="glyphicon glyphicon-ok form-control-feedback mobtick "></i> 
-      </div>
-      <div id="mobnumerror" class="spanHide" 
-      *ngIf="contact.get('mobnum').touched && contact.get('emernum').touched && contact.invalid">
-        <!-- <div class="alert alert-danger" *ngIf="contact.errors.atleastOneMobNum">must fill atleast one number</div> -->
-        <div class="alert alert-danger" *ngIf="contact.get('mobnum').errors.atleastOneMobNum">mob is not empty</div>
-        <div class="alert alert-danger" *ngIf="contact.get('mobnum').errors.pattern">its not a valid number</div>
-      </div>
-      <!-- <br><br><br> -->
-      <div id="iddiv">
-          <label for="emernum">Emergency Number</label>
-          <input type="text" class="form-control" name="emernum" formControlName="emernum" id="emernum">
-          <i class="glyphicon glyphicon-remove form-control-feedback emerwrong" ></i>
-          <i class="glyphicon glyphicon-ok form-control-feedback emertick "></i> 
-      </div>
-      <div id="emernumerror" class="spanHide"
-       *ngIf="contact.get('mobnum').touched && contact.get('emernum').touched  && contact.invalid">
-          <div class="alert alert-danger" *ngIf="contact.get('emernum').errors.atleastOneMobNum">must fill atleast one number</div>
-          <div class="alert alert-danger" *ngIf="contact.get('emernum').errors.pattern">its not a valid number</div>
-        </div>
-      <br><br>
+    <div class="col-sm-7 align-left">
+        <input type="checkbox" id="mob_Q1" value="Q1" />
+        <label for="mob_Q1">Express</label>
     </div>
-    <button type="button" class="btn btn-success" id="submitting" [disabled]="idform.invalid" onClick="formSubmit()">submit</button>       
+    
+       <button type ="submit" [disabled]=!idform.valid class="btn-btn-success" >Save</button>
+      <button type="button" class="btn btn-success" id="submitting" [disabled]="idform.invalid" onClick="formSubmit()">submit</button>       
 </form>
